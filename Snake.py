@@ -38,7 +38,7 @@ class Snake:
         self.tail_length += 1
 
     def get_center(self):
-        return Position(self.position.x + (self.step_size/2), self.position.y + (self.step_size/2))
+        return Position(int(self.position.x + (self.step_size/2)), int(self.position.y + (self.step_size/2)))
 
     def get_nose(self):
         nose = self.get_center()

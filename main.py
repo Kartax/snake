@@ -4,7 +4,7 @@ from Direction import Direction
 
 width = 800
 height = 800
-block_size = 20
+block_size = 10
 
 display = pygame.display.set_mode((width, height))
 snake = Snake(width, height, block_size)
@@ -28,6 +28,8 @@ def draw_snake():
     for p in snake.position_history:
         pygame.draw.rect(display, (155, 0, 0), (p.x, p.y, block_size, block_size))
     # nose
+    snake_center.print()
+    nose.print()
     pygame.draw.line(display, (255, 0, 0), (snake_center.x, snake_center.y), (nose.x, nose.y))
     # body
     pygame.draw.rect(display, (255, 0, 0), (snake.position.x, snake.position.y, block_size, block_size))
