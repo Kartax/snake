@@ -6,6 +6,5 @@ class Position:
         self.x = x
         self.y = y
 
-
     def print(self):
         print("{}/{}".format(self.x, self.y))

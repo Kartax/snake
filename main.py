@@ -1,6 +1,9 @@
 import pygame
+import random
+import math
 from Snake import Snake
 from Direction import Direction
+from Position import Position
 
 width = 800
 height = 800
@@ -10,7 +13,7 @@ display = pygame.display.set_mode((width, height))
 snake = Snake(width, height, block_size)
 clock = pygame.time.Clock()
 pygame.display.set_caption("Snake")
-
+fruit = Position(0,0)
 
 def draw_grid():
     for h in range(block_size, height, block_size):
@@ -28,14 +31,22 @@ def draw_snake():
     for p in snake.position_history:
         pygame.draw.rect(display, (155, 0, 0), (p.x, p.y, block_size, block_size))
     # nose
-    snake_center.print()
-    nose.print()
     pygame.draw.line(display, (255, 0, 0), (snake_center.x, snake_center.y), (nose.x, nose.y))
     # body
     pygame.draw.rect(display, (255, 0, 0), (snake.position.x, snake.position.y, block_size, block_size))
 
 
+def draw_fruit():
+    pygame.draw.rect(display, (0, 255, 255), (fruit.x, fruit.y, block_size, block_size))
+
+
+def move_fruit():
+    fruit.x = math.floor(random.randint(0, width - block_size) / block_size) * block_size
+    fruit.y = math.floor(random.randint(0, width - block_size) / block_size) * block_size
+
+
 def main():
+
     running = True
     while running:
         # draw background
@@ -58,7 +69,12 @@ def main():
                     snake.grow()
 
         draw_grid()
+        draw_fruit()
         draw_snake()
+
+        if snake.position.x == fruit.x and snake.position.y == fruit.y:
+            snake.grow()
+            move_fruit()
 
         pygame.display.update()
 
