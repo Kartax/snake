@@ -4,7 +4,7 @@ from Direction import Direction
 
 width = 800
 height = 800
-block_size = 10
+block_size = 20
 
 display = pygame.display.set_mode((width, height))
 snake = Snake(width, height, block_size)

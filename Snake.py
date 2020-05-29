@@ -7,7 +7,7 @@ import math
 class Snake:
     position = Position(0,0)
     position_history = []
-    tail_length = 0
+    tail_length = 1
     step_size = 0
     direction = Direction.RIGHT
 
@@ -28,6 +28,9 @@ class Snake:
             part.y += self.step_size
 
     def step(self):
+        if len(self.position_history) >= self.tail_length:
+            self.position_history.pop(0)
+
         self.position_history.append(Position(self.position.x, self.position.y))
         self.handle_movement(self.position)
 
