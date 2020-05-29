@@ -6,7 +6,8 @@ import math
 
 class Snake:
     position = Position(0,0)
-    tail = []
+    position_history = []
+    tail_length = 0
     step_size = 0
     direction = Direction.RIGHT
 
@@ -27,17 +28,11 @@ class Snake:
             part.y += self.step_size
 
     def step(self):
-        parts = self.tail.copy()
-        parts.append(self.position)
-
-        for part in parts:
-            self.handle_movement(part)
+        self.position_history.append(Position(self.position.x, self.position.y))
+        self.handle_movement(self.position)
 
     def grow(self):
-        ref = self.position
-        if len(self.tail) > 0:
-            ref = self.tail[-1]
-        self.tail.append(Position(ref.x + self.step_size, ref.y + self.step_size))
+        self.tail_length += 1
 
     def get_center(self):
         return Position(self.position.x + (self.step_size/2), self.position.y + (self.step_size/2))

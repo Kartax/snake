@@ -24,13 +24,13 @@ def draw_grid():
 def draw_snake():
     snake_center = snake.get_center()
     nose = snake.get_nose()
+    # tail
+    for p in snake.position_history:
+        pygame.draw.rect(display, (155, 0, 0), (p.x, p.y, block_size, block_size))
     # nose
     pygame.draw.line(display, (255, 0, 0), (snake_center.x, snake_center.y), (nose.x, nose.y))
     # body
     pygame.draw.rect(display, (255, 0, 0), (snake.position.x, snake.position.y, block_size, block_size))
-    # tail
-    for t in snake.tail:
-        pygame.draw.rect(display, (255, 0, 0), (t.x, t.y, block_size, block_size))
 
 
 def main():
@@ -60,7 +60,6 @@ def main():
 
         pygame.display.update()
 
-        print("{} / {}".format(snake.position.x, snake.position.y))
         snake.step()
         clock.tick(10)
 
