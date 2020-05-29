@@ -72,9 +72,12 @@ def main():
         draw_fruit()
         draw_snake()
 
+        # check fro collision with fruit
         if snake.position.x == fruit.x and snake.position.y == fruit.y:
             snake.grow()
             move_fruit()
+
+        # check for collision with tail or border
 
         pygame.display.update()
 

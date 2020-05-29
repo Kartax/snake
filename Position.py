@@ -6,5 +6,5 @@ class Position:
         self.x = x
         self.y = y
 
-    def print(self):
-        print("{}/{}".format(self.x, self.y))
+    def collision(self, position):
+        return self.x == position.x and self.y == position.y
